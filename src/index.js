@@ -45,30 +45,20 @@ document.addEventListener("DOMContentLoaded", () => {
             postsSpan.innerText = postObj.post_text
 
             aMain.append(likeSum, dislikeSum)
-            specificSpan.append(theBreak, likeBtn, dislikeBtn, aMain)
+            specificSpan.append(likeBtn, dislikeBtn, aMain)
             sideBar.append(specificSpan, anotherBreak)
             allPostDiv.append(postsSpan)
             fillInBody.append(sideBar, allPostDiv)
 
-     /* <nav>
-            log in form goes here as well as logo
-            <hr>
-        </nav>
-        <section>
-            <span>
-            The Specific Post
-            <hr>
-            <button type="button">like 👍!</button>
-            <button type="button"> dislike 👎!</button>
-             <div>like #</div> <div>dislike #</div>
-            <hr>
-            </span>
-        </section>
-        <div>
-            <span>
-                all the post
-            </span>
-        </div>*/
+     /* for event listener
+     <span>
+      The Specific Post
+      <hr>
+      <button type="button">like 👍!</button>
+      <button type="button"> dislike 👎!</button>
+      <div>like #</div>
+      <div>dislike #</div>
+    </span>*/
         }
 
 
