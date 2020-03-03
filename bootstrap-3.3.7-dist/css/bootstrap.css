@@ -9,6 +9,17 @@ html {
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+.specific-post {
+    position: relative;
+    width: 200px;
+    height: 880px;
+    left: 500px;
+    top: 5px;
+    bottom: 50px;
+    background: rgb(184, 109, 109);
+    box-shadow: 5px 10px 4px rgb(199, 168, 129);
+}
+
 body {
   margin: 0;
 }
@@ -3001,6 +3012,8 @@ select[multiple].input-lg {
   }
 }
 .btn {
+  position: relative;
+  
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -3020,6 +3033,7 @@ select[multiple].input-lg {
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
+  box-shadow: 5px 10px 4px rgba(207, 34, 34, 0.5);
 }
 .btn:focus,
 .btn:active:focus,

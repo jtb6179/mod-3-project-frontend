@@ -18,12 +18,12 @@ body {
     width: 556px;
     height: 882px;
     left: 500px;
-    top: 25px;
+    top: 5px;
     background: rgb(184, 109, 109);
     box-shadow: 5px 10px 4px rgb(199, 168, 129)1, 196, 154;
 }
 .post-boxes {
-    position: absolute;
+    position: relative;
     width: 56px;
     height: 15px;
     left: 50px;
