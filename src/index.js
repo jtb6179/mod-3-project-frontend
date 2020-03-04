@@ -11,11 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fetch(url).then(res => res.json())
     .then(posts => {
+        console.log(posts);
+        
         posts.forEach(onePost => {
             renderPost(onePost) 
             });
-            allDumpDrops = posts
-            // debugger
         })
         // let lastBreak = document.createElement('hr')
         // let newPostBtn = document.createElement('button')
@@ -29,30 +29,34 @@ document.addEventListener("DOMContentLoaded", () => {
         newPostForm.addEventListener('submit', (event) => {
             console.log(event);
             event.preventDefault()
-            // debugger
+            // let options = document.createElement('option')
+            // options.setAttribute('name', 'name')
+            // let findUser = allDumpDrops.find(post => post.user_id == event.target.name.value)
+            // options.innerText = findUser
+            debugger
             const newPost = {
                 title: event.target.name.value, 
-                post_text: event.target.post_text.value
+                post_text: event.target.post_text.value,
+                user_id: event.target.user.value
             }
-
+        
             fetch(url, {
                 method: "POST",
                 headers: {
-                    'Content- Type': 'application / json',
+                    'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify(newPost)
             })
-                .then(console.log)
-                
-                // .then(data => {
-                //     console.log(data);   
-                // })
-
-        })
+                .then(res => res.json())
+                .then(data => {
+                    renderPost(data)
+                })
+            })
 
 
         function renderPost(postObj) {
+            // debugger
             let fillInBody = document.querySelector('body')
             let theNavBar = document.querySelector('#the-nav')
             let specificSpan = document.querySelector('.specific-post')
@@ -93,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // dislikeBtn.innerText = `Dislike! 👎`
             postsSpan.innerText = postObj.post_text
             function likeNumber() {
-                return postObj.num_of_likes.length 
+                return postObj.num_of_likes.length
             }
 
             likeSum.innerText = `likes: ${likeNumber()}`
