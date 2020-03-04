@@ -2,7 +2,11 @@ console.log("Hello World")
 document.addEventListener("DOMContentLoaded", () => {
     let url = `http://localhost:3000/posts`;
 
-    // let allDumpDrops;
+    
+    let allDumpDrops;
+    let newPostBtn = document.querySelector('#new-post-btn');
+    let newPostForm = document.querySelector('#New-Post-Form');
+
     const allnewLike = new Like;
 
     fetch(url).then(res => res.json())
@@ -10,9 +14,43 @@ document.addEventListener("DOMContentLoaded", () => {
         posts.forEach(onePost => {
             renderPost(onePost) 
             });
-            // allDumpDrops = posts
+            allDumpDrops = posts
             // debugger
         })
+        // let lastBreak = document.createElement('hr')
+        // let newPostBtn = document.createElement('button')
+        // let formForPost = document.querySelector("#modal")
+        // newPostBtn.setAttribute('id', `new-post-btn`)
+        // newPostBtn.setAttribute('class', `btn`)
+        // newPostBtn.innerText = `New Post`
+        // thebody.append(newPostBtn, lastBreak)
+
+
+        newPostForm.addEventListener('submit', (event) => {
+            console.log(event);
+            event.preventDefault()
+            // debugger
+            const newPost = {
+                title: event.target.name.value, 
+                post_text: event.target.post_text.value
+            }
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    'Content- Type': 'application / json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(newPost)
+            })
+                .then(console.log)
+                
+                // .then(data => {
+                //     console.log(data);   
+                // })
+
+        })
+
 
         function renderPost(postObj) {
             let fillInBody = document.querySelector('body')
@@ -27,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // let dislikeBtn = document.createElement('button')
             let likeSum = document.createElement('div')
             // let dislikeSum = document.createElement('div')
-            let lastBreak = document.createElement('hr')
+            
             let allPostDiv = document.createElement('div')
             let postsSpan = document.createElement('span')
 
@@ -47,17 +85,20 @@ document.addEventListener("DOMContentLoaded", () => {
             likeSum.setAttribute('style', `font-style: italic`)
             likeSum.setAttribute('id', `number-of-likes`)
             
+            
             h1Above.innerText = `Headline: ${postObj.title}`
             
             likeBtn.innerText = `Like! 👍`
             // theNavBar.
             // dislikeBtn.innerText = `Dislike! 👎`
-            function likeNumber() {
-                return postObj.num_of_likes = 0
-            }
-            likeSum.innerText = `likes: ${likeNumber()}`
-            // dislikeSum.innerText = `dislikes: 0`
             postsSpan.innerText = postObj.post_text
+            function likeNumber() {
+                return postObj.num_of_likes.length 
+            }
+
+            likeSum.innerText = `likes: ${likeNumber()}`
+           
+            // dislikeSum.innerText = `dislikes: 0`
             
             
             // specificSpan.append( )
@@ -94,44 +135,44 @@ document.addEventListener("DOMContentLoaded", () => {
                 onePostDiv.append(oneMoreSpan)
                 specificSpan.append(onePostDiv)
 
-                function likeMe(event, postObj) {
-                    // 1. console.log quoteObj, event
-                    // console.log(event, quoteObj);
-                    // 2. fetch POST request to `http://localhost:3000/likes`
-                    // 3. update the likes button's span 
+                // function likeMe(event, postObj) {
+                //     // 1. console.log quoteObj, event
+                //     // console.log(event, quoteObj);
+                //     // 2. fetch POST request to `http://localhost:3000/likes`
+                //     // 3. update the likes button's span 
 
-                    const newlike = {
-                        like: likeSum.innerText,
-                        post_id: postObj.id
-                    }
-                    let likenum = event.path[2].querySelector('#number-of-likes')
-                    let increasedLikes = (parseInt(likenum.innerText.match(/\d+/)[0])) + 1
-                    // debugger
-                    return fetch(`http://localhost:3000/posts/${postObj.id}`, {
-                        method: "PATCH",
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify({ like: newlike })
-                    })
+                //     const newlike = {
+                //         like: likeSum.innerText,
+                //         post_id: postObj.id
+                //     }
+                //     let likenum = event.path[2].querySelector('#number-of-likes')
+                //     let increasedLikes = (parseInt(likenum.innerText.match(/\d+/)[0])) + 1
+                //     // debugger
+                //     return fetch(`http://localhost:3000/posts/${postObj.id}`, {
+                //         method: "PATCH",
+                //         headers: {
+                //             'Content-Type': 'application/json',
+                //             'Accept': 'application/json'
+                //         },
+                //         body: JSON.stringify({ like: newlike })
+                //     })
 
-                        .then(res => res.json())
-                        .then(data => {
-                            console.log(data)
-                            event.path[2].querySelector('#number-of-likes').innerText = `likes: ${increasedLikes}`
-                        })
+                //         .then(res => res.json())
+                //         .then(data => {
+                //             console.log(data)
+                //             event.path[2].querySelector('#number-of-likes').innerText = `likes: ${increasedLikes}`
+                //         })
 
 
-                }
-
-                specificSpanLikebtn.addEventListener('click', event => {
-                    console.log('like');
-                    likeMe(event, postObj)
-                })
                 
 
-            })
+                // specificSpanLikebtn.addEventListener('click', event => {
+                //     console.log('like');
+                //     likeMe(event, postObj)
+                // })
+                })
+
+            
 
             function likeMe(event, postObj) {
                 // 1. console.log quoteObj, event
@@ -146,13 +187,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 let likenum = event.path[2].querySelector('#number-of-likes')
                 let increasedLikes = (parseInt(likenum.innerText.match(/\d+/)[0])) + 1
                 // debugger
-                return fetch(`http://localhost:3000/posts/${postObj.id}`, {
-                    method: "PATCH",
+                return fetch(`http://localhost:3000/num_of_likes`, {
+                    method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
                     },
-                    body: JSON.stringify({ like: newlike })
+                    body: JSON.stringify(newlike)
                 })
                 
                     .then(res => res.json())
