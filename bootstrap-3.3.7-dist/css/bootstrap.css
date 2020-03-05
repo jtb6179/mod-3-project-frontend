@@ -9,15 +9,81 @@ html {
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+
+.leftside {
+  
+}
+
+.divToTop{
+  /* position: relative;
+  top: 10px; */
+  height: 50vh;
+  width: 100%;
+  /* margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px; */
+}
+
+@media screen and (min-width: 768px) {
+
+  .specific-post, .divToTop {
+    height: 100vh
+  }
+
+}
+
 .specific-post {
-    position: relative;
+  height: 50vh;
+  width: 100%;
+
+    /* position: relative;
     width: 200px;
     height: 880px;
     left: 500px;
     top: 5px;
     bottom: 50px;
     background: rgb(184, 109, 109);
-    box-shadow: 5px 10px 4px rgb(199, 168, 129);
+    box-shadow: 5px 10px 4px rgb(199, 168, 129); */
+
+    /* -ms-flex-align: stretch;
+    -ms-flex-direction: column;
+    -ms-flex-negative: 0;
+    -ms-flex-preferred-size: auto;
+    -webkit-align-items: stretch;
+    -webkit-box-align: stretch;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-flex-basis: auto;
+    -webkit-flex-direction: column;
+    -webkit-flex-shrink: 0;
+    align-items: stretch;
+    border: 0 solid black;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    min-height: 0px;
+    min-width: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    position: relative;
+    z-index: 0; */
+    /* padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px; */
 }
 
 body {
@@ -6535,6 +6601,10 @@ button.close {
 }
 .pull-right {
   float: right !important;
+  margin-bottom: 0px;
+  margin-left: 500px;
+  margin-right: 0px;
+  margin-top: 30px;
 }
 .pull-left {
   float: left !important;

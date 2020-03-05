@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let newPostBtn = document.querySelector('#new-post-btn');
     let newPostForm = document.querySelector('#New-Post-Form');
 
-    const allnewLike = new Like;
 
     fetch(url).then(res => res.json())
     .then(posts => {
@@ -16,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         posts.forEach(onePost => {
             renderPost(onePost) 
             });
+            allDumpDrops = posts
         })
         // let lastBreak = document.createElement('hr')
         // let newPostBtn = document.createElement('button')
@@ -26,33 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // thebody.append(newPostBtn, lastBreak)
 
 
-        newPostForm.addEventListener('submit', (event) => {
-            console.log(event);
-            event.preventDefault()
-            // let options = document.createElement('option')
-            // options.setAttribute('name', 'name')
-            // let findUser = allDumpDrops.find(post => post.user_id == event.target.name.value)
-            // options.innerText = findUser
-            debugger
-            const newPost = {
-                title: event.target.name.value, 
-                post_text: event.target.post_text.value,
-                user_id: event.target.user.value
-            }
-        
-            fetch(url, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(newPost)
-            })
-                .then(res => res.json())
-                .then(data => {
-                    renderPost(data)
-                })
-            })
+       
 
 
         function renderPost(postObj) {
@@ -66,23 +40,15 @@ document.addEventListener("DOMContentLoaded", () => {
             let h1Above = document.createElement('h1')
             let anotherBreak = document.createElement('hr')
             let likeBtn = document.createElement('button')
-            // let dislikeBtn = document.createElement('button')
             let likeSum = document.createElement('div')
-            // let dislikeSum = document.createElement('div')
-            
             let allPostDiv = document.createElement('div')
             let postsSpan = document.createElement('span')
-
-            // theNavBar.setAttribute('class', 'nav')
-            // theNavBar.setAttribute('id', 'trash-heap')
-            loginUser.setAttribute('label', `Username`)
-    //         <label for="uname"><b>Username</b></label>
-    // <input type="text" placeholder="Enter Username" name="uname" required></input>
-            // sideBar.setAttribute('class', `offcanvas`)
+           
             likeBtn.setAttribute('class', `btn`)
             
             // dislikeBtn.setAttribute('class', `btn`)
-            allPostDiv.setAttribute('class', 'all-the-dump-drops')
+            allPostDiv.classList.add('all-the-dump-drops','divToTop', 'col-md-6')
+       
             allPostDiv.setAttribute('data-id', `${postObj.id}`)
             postsSpan.setAttribute('class', 'child-Span-list')
             likeSum.setAttribute('style', `font-family: "Times New Roman", Times, serif`)
@@ -97,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // dislikeBtn.innerText = `Dislike! 👎`
             postsSpan.innerText = postObj.post_text
             function likeNumber() {
-                return postObj.num_of_likes.length
+                return postObj.num_of_likes.length 
             }
 
             likeSum.innerText = `likes: ${likeNumber()}`
@@ -179,15 +145,11 @@ document.addEventListener("DOMContentLoaded", () => {
             
 
             function likeMe(event, postObj) {
-                // 1. console.log quoteObj, event
-                // console.log(event, quoteObj);
-                // 2. fetch POST request to `http://localhost:3000/likes`
-                // 3. update the likes button's span 
-                
                 const newlike = {
                     like: likeSum.innerText,
                     post_id: postObj.id
                 }
+                // debugger
                 let likenum = event.path[2].querySelector('#number-of-likes')
                 let increasedLikes = (parseInt(likenum.innerText.match(/\d+/)[0])) + 1
                 // debugger
@@ -212,21 +174,43 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log('like');
                 likeMe(event, postObj)
             })
+            
+            newPostForm.addEventListener('submit', (event) => {
+                console.log(event);
+                event.preventDefault()
 
-     /* for event listener
-     <span>
-      The Specific Post
-      <hr>
-      <button type="button">like 👍!</button>
-      <button type="button"> dislike 👎!</button>
-      <div>like #</div>
-      <div>dislike #</div>
-    </span>*/
-        }
+                
 
+                const newPost = {
+                    title: event.target.name.value,
+                    post_text: event.target.post_text.value,
+                }
 
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(newPost)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        postsSpan.append(data)
+                    })
+                    
 
+                    if (typeof newPost !== "undefined") {
+                        newPostForm.style.display = "none"
+                    } else {
+                        alert("Make Sure all the fields are field")
+                    }
 
+                    // debugger
+                })
+        
+            }
 
 
 })

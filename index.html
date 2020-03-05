@@ -8,7 +8,6 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <script src="./src/index.js"></script>
   <script defer src="/src/modal.js"></script>
-  <script src="./src/likes.js"></script>
   <title>Bootstrap 101 Template</title>
 
   <!-- Bootstrap -->
@@ -23,8 +22,8 @@
     <![endif]-->
 </head>
 
-<body class="container" style="background-color: bisque;">
-  <h1>Hello, world!</h1>
+<body class="row" style="background-color: bisque;">
+  <h1>Trash Panda</h1>
 
   <nav id="the-nav"class="nav-bar" style="background-color: rgb(218, 147, 147);">
     Log in will go HERE!!
@@ -35,24 +34,9 @@
     New Post
   </li>
 
-  <!-- let lastBreak = document.createElement('hr')
-  let newPostBtn = document.createElement('button')
-  let formForPost = document.querySelector("#modal")
-  newPostBtn.setAttribute('id', `new-post-btn`)
-  newPostBtn.setAttribute('class', `btn`)
-  newPostBtn.innerText = `New Post`
-  thebody.append(newPostBtn, lastBreak) -->
-  <!-- <section class="container " style="background-color: beige;"> -->
-    <!-- <span> -->
-      
-    <!-- </span> -->
-  <!-- </section> -->
-    <div class="specific-post container">
+    <div class="specific-post col-md-6">
         That one Post
-      <div>
-      <!-- <button type="button" class="btn">like 👍!</button> -->
-      <!-- <button type="button" class="btn"> dislike 👎!</button> -->
-      </div>
+  
     </div>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -66,8 +50,7 @@
       </select>
       <label style="font-family: Georgia, 'Times New Roman', Times, serif;" for="title">Title</label>
       <input type="text" name="name" placeholder="Terrible Title...">
-      <!-- <label for="image_url">Image URL</label> -->
-      <!-- <input type="text" name="image_url" id="image-id"> -->
+
       <label style="font-family: cursive;" for="post_text">Dump Drop Text</label>
       <textarea name="post_text" rows="2" id="post_id"></textarea>
       <hr>
