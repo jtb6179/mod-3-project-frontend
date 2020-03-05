@@ -43,9 +43,14 @@ document.addEventListener("DOMContentLoaded", () => {
             let likeSum = document.createElement('div')
             let allPostDiv = document.createElement('div')
             let postsSpan = document.createElement('span')
+            let deleteBtn = document.createElement('button')
            
             likeBtn.setAttribute('class', `btn`)
             
+            deleteBtn.setAttribute('class', `btn`)
+            deleteBtn.innerText = "Delete this post"
+
+
             // dislikeBtn.setAttribute('class', `btn`)
             allPostDiv.classList.add('all-the-dump-drops','divToTop', 'col-md-6')
        
@@ -77,6 +82,11 @@ document.addEventListener("DOMContentLoaded", () => {
             theNavBar.appendChild(loginUser)
             allPostDiv.append(postsSpan, btnDiv, anotherBreak, likeSum, theBreak)
             fillInBody.append(allPostDiv)
+            btnDiv.append(deleteBtn)
+
+            deleteBtn.addEventListener('click', deletePost)
+
+
 
             postsSpan.addEventListener('click', () =>{
                 console.log("hover working");
@@ -86,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 let oneMoreSpan = document.createElement('div')
                 let likeDiv = document.createElement('div')
                 let specificSpanLikebtn = document.createElement('button')
+
 
                 specificSpan.innerHTML = ""
                 
@@ -105,8 +116,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 onePostDiv.append(oneMoreSpan)
                 specificSpan.append(onePostDiv)
 
+
+
+
+
+
                 // function likeMe(event, postObj) {
-                //     // 1. console.log quoteObj, event
+                //     // 1. console.log quoteObj, even t
                 //     // console.log(event, quoteObj);
                 //     // 2. fetch POST request to `http://localhost:3000/likes`
                 //     // 3. update the likes button's span 
@@ -142,8 +158,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 // })
                 })
 
-            
-
+           
+             function deletePost(event){
+                 event.preventDefault()
+                 fetch(`http://localhost:3000/posts/${postObj.id}`, {
+                     method: "DELETE"
+                 }).then(res => res.json())
+                    allPostDiv.remove()
+                }
+                
             function likeMe(event, postObj) {
                 const newlike = {
                     like: likeSum.innerText,
