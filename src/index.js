@@ -44,6 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
             let allPostDiv = document.createElement('div')
             let postsSpan = document.createElement('span')
             let deleteBtn = document.createElement('button')
+            let editPostForm = document.createElement('form')
+            let editPost = document.createElement('input')
+            let editPostBtn = document.createElement('button')
            
             likeBtn.setAttribute('class', `btn`)
             
@@ -59,6 +62,16 @@ document.addEventListener("DOMContentLoaded", () => {
             likeSum.setAttribute('style', `font-family: "Times New Roman", Times, serif`)
             likeSum.setAttribute('style', `font-style: italic`)
             likeSum.setAttribute('id', `number-of-likes`)
+
+            editPost.setAttribute('class', 'edit-post')
+            editPost.setAttribute('placeholder', 'edit post...')
+            editPost.innerText = "Edit post"
+
+            editPostForm.setAttribute('id', 'edit-post-form')
+
+            editPostBtn.setAttribute('class', 'btn')
+            editPostBtn.innerText = "Submit Edit"
+
             
             
             h1Above.innerText = `Headline: ${postObj.title}`
@@ -83,8 +96,16 @@ document.addEventListener("DOMContentLoaded", () => {
             allPostDiv.append(postsSpan, btnDiv, anotherBreak, likeSum, theBreak)
             fillInBody.append(allPostDiv)
             btnDiv.append(deleteBtn)
+            btnDiv.append(editPost)
+
+            btnDiv.append(editPostForm)
+            editPostForm.append(editPost)
+            editPostForm.append(editPostBtn)
 
             deleteBtn.addEventListener('click', deletePost)
+
+            editPostForm.addEventListener('submit', editPostFnc)
+            // editPost.addEventListener('click', editPostFnc)
 
 
 
@@ -157,6 +178,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 //     likeMe(event, postObj)
                 // })
                 })
+
+             function editPostFnc(event){
+                 event.preventDefault()
+                 
+                 fetch(`http://localhost:3000/posts/${postObj.id}`, {
+                    method: 'PATCH',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        post_text: editPost.value
+                    }),
+                  })
+                  .then(res => res.json())
+                  .then(renderPost)
+                 
+                //  debugger             
+            }
 
            
              function deletePost(event){
