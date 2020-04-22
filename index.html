@@ -8,7 +8,7 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <script src="./src/index.js"></script>
   <script defer src="/src/modal.js"></script>
-  <title>Bootstrap 101 Template</title>
+  <title style="font-family: cursive">Trash Panda Social</title>
 
   <!-- Bootstrap -->
   <link href="./bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
@@ -22,26 +22,17 @@
     <![endif]-->
 </head>
 
-<body class="row" style="background-color: bisque;">
-  <h1>Trash Panda</h1>
+<body style="background-color: beige;">
+  <img src="./images/trashPanda logo.png" style="image-resolution: 15px;"/> 
 
-  <nav id="the-nav"class="nav-bar" style="background-color: rgb(218, 147, 147);">
-    Log in will go HERE!!
+<nav id="the-nav"class="nav-tabs" style="background-color: #EDC9AF"> 
+    
     <hr>
-  </nav>
-
-  <li id="new-post-btn" class="btn" style="background-image: url(https://digitalsynopsis.com/wp-content/uploads/2017/07/beautiful-color-ui-gradients-backgrounds-a-lost-memory.png);" data-action="new">
-    New Post
-  </li>
-
-    <div class="specific-post col-md-6">
-        That one Post
-  
-    </div>
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <!-- <script src="js/bootstrap.js"></script> -->
-  <div id="modal" style="display: none;" data-action="close">
+    <div>
+    <li id="new-post-btn" class="btn" style="background-image: url(https://digitalsynopsis.com/wp-content/uploads/2017/07/beautiful-color-ui-gradients-backgrounds-a-lost-memory.png);" data-action="new">
+      New Post
+    </li>
+    <div id="modal" style="display: none;" data-action="close">
     <form id="New-Post-Form">
       <h1>New Dump Drop</h1>
       <label style="font-family: Georgia, 'Times New Roman', Times, serif;" for="user"> UserName</label>
@@ -58,6 +49,24 @@
       <hr>
     </form>
   </div>
+  <hr>
+  </div>
+</nav>
+
+  
+
+  <div>
+    <div class="specific-post col-md-6">
+        
+      </div>
+      
+    
+  
+  </div>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <!-- <script src="js/bootstrap.js"></script> -->
+  
 </body>
 
 </html>
